@@ -1,4 +1,5 @@
 const express = require('express');
+const convert = require("xml-js");
 const app = express();
 const PORT = 3000;
 
@@ -68,6 +69,26 @@ app.post("/JsonToXML", (req, res) => {
     xml += "</arrel>"
 
     res.json({ result: xml });
+});
+
+app.post("/XMLtoJsonNew", (req, res) => {
+    const { data } = req.body;
+    try {
+        const result = convert.xml2json(data, {compact: true, spaces: 4});
+        res.json({ result });
+    } catch (error) {
+        res.status(400).json({ result: "Error en el format XML" });
+    }
+});
+
+app.post("/JsonToXMLNew", (req, res) => {
+    const { data } = req.body;
+    try {
+        const result = convert.json2xml(data, {compact: true, ignoreComment: true, spaces: 4});
+        res.json({ result });
+    } catch (error) {
+        res.status(400).json({ result: "Error en el format JSON" });
+    }
 });
 
 app.listen(PORT, () => {

@@ -3,7 +3,8 @@ const btnToXML = document.getElementById("btnToXML");
 
 btnToJSON.addEventListener("click", async () => {
   const text = document.getElementById("input").value;
-  const res = await fetch("/XMLtoJson", {
+  // Cambiamos la ruta a /XMLtoJsonNew (o el nombre que hayas dado en server.js)
+  const res = await fetch("/XMLtoJsonNew", { 
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -16,9 +17,9 @@ btnToJSON.addEventListener("click", async () => {
 });
 
 btnToXML.addEventListener("click", async () => {
-
   const text = document.getElementById("input").value;
-  const res = await fetch("/JsonToXML", {
+  // Cambiamos la ruta a /JsonToXMLNew
+  const res = await fetch("/JsonToXMLNew", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
