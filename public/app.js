@@ -1,0 +1,32 @@
+const btnToJSON = document.getElementById("btnToJSON");
+const btnToXML = document.getElementById("btnToXML");
+
+btnToJSON.addEventListener("click", async () => {
+  const text = document.getElementById("input").value;
+  const res = await fetch("/XMLtoJson", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ data: text })
+  });
+  const json = await res.json();
+  
+  document.getElementById("output").value = json.result;
+});
+
+btnToXML.addEventListener("click", async () => {
+
+  const text = document.getElementById("input").value;
+  const res = await fetch("/JsonToXML", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ data: text })
+  });
+
+  const json = await res.json();
+  
+  document.getElementById("output").value = json.result;
+});
